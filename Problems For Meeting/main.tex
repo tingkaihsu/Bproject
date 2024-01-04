@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+\usepackage{braket}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage[export]{adjustbox}
+\usepackage{listings}
+\usepackage{mathcomp}
+\usepackage{hyperref}
+\usepackage{bm,amsmath}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage{bigints}
+\usepackage{listings}
+\usepackage{color}
+\numberwithin{equation}{section}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  stepnumber = 1,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\title{Problems Before the Meeting}
+\author{Ting-Kai Hsu}
+\date{NOv 20}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Where Are the Functions Used}
+
+In the block [3] and [4], we can see there are definitions for 2 functions. One is \textbf{stack\_arrays} and the other is \textbf{pad\_array}. 
+However, I never see the first one (\textbf{stack\_arrays}) been used in the remaining part of the code. 
+The latter one has been used at block [5] in the definition of \textbf{load()} function. 
+In \textbf{load()} function, we append the padded version of array into the new one.
+
+\section{An Useful Tool To Understand Awkward Array}
+Here is the link: \href{https://cms-opendata-workshop.github.io/workshop2022-lesson-cpp-root-python/08-awkward/}{click}.
+
+\section{What is Mask}
+In the definition of \textbf{\_\_init\_\_} function in \textbf{Dataset}, we can see one of the key of feature dictionary would be 'mask'. 
+It confuses me because I don't know the meaning of mask and its function.\\\indent 
+Moreover, I don't know why the code doesn't contain any information about the charge carried by the particles.
+
+\section{More on the Needed Information}
+As we can see in \href{https://github.com/hqucms/ParticleNet/blob/master/tf-keras/convert_dataset.ipynb}{convert\_dataset.ipynb}, there are many properties for a particle that should be labeled out.
+
+\begin{itemize}
+    \item px, py, pz, e: These would build up the 4 momentum of the particle. \textbf{Note that we not only store for jet but also each particle. }
+    \item pt: This would be the transverse momentum, that is, the momentum along the scatter line. \textbf{Note that we not only store for jet but also each particle.}
+    \item jet\_eta, jet\_phi: These two would show the spacial distribution of the particle, which the measurement would along the scattering line.
+    \item jet\_mass, n\_particle: We store the total mass of jet\footnote{I don't know why we need this parameter.}, and also store the number of particles.
+\end{itemize}
+
+I find out we also need to store the relative value\footnote{Data of particle relative to jet.}, which is quite confusing. 
+\\\\
+\begin{enumerate}
+    \item part\_ptrel: Transverse momentum relative to that of jet, which is $$part\_ptrel = \frac{pt}{jet\_pt}$$, and also its logirithm value.
+    \item part\_erel:  Energy of particle relative to that of jet and its logirithm value.
+    \item spacial parameters for particle: part\_raw\_etarel, part\_etarel, part\_phirel, and part\_deltaR.
+    \begin{itemize}
+        \item part\_raw\_etarel: We compute this by formula$$\eta_{\text{particle}} - \eta_{\text{jet}}$$
+        \item part\_etarel: This would be the last value multiplied with \textbf{eta sign} of jet\footnote{I don't know the meaning of this particle.}.$$\eta_{\text{rel}} = \eta_{\textbf{raw}}\times\text{sign of eta of jet}$$
+        \item part\_phirel: We get this by a function that confuses me. It seems that we can get this paramenter easily.
+        \begin{center}
+        \begin{lstlisting}
+            p4.delta_phi(jet_p4)
+        \end{lstlisting}
+    \end{center}
+        \item part\_deltaR: This is the spacial distance.
+    \end{itemize}
+\end{enumerate}
+
+\section{Note After Discussion}
+
+Professor said that the example provided by author would be merely classification, but eventually we would like to use this model to retrieve the information of B meson\footnote{This kind of particle can decay in a short time.}
+The modification we would like to make would be using different loss function. 
+Also, we would like to mention that there is already much more efficient machine learning model in HEP analysis called \href{https://github.com/jet-universe/particle_transformer}{Particle Transformer}.
+My job now would be try to get some data by simulation, and there is a special simulation package in C++ made for B-tagging, which is called \href{https://evtgen.hepforge.org/}{EvtGen}.
+First we can use to classification B+ and B- quark using the model provided without changing the loss function
+\footnote{That is, we only need to know how to put the data that is different from the jet tagging in the example into the model.}.
+There is an useful website that contains all possible evolution of elementary particle, called \href{https://pdglive.lbl.gov/Viewer.action}{particle data group}.
+
+\end{document}
