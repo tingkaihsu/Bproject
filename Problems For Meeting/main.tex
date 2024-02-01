@@ -66,7 +66,10 @@ Here is the link: \href{https://cms-opendata-workshop.github.io/workshop2022-les
 In the definition of \textbf{\_\_init\_\_} function in \textbf{Dataset}, we can see one of the key of feature dictionary would be 'mask'. 
 It confuses me because I don't know the meaning of mask and its function.\\\indent 
 Moreover, I don't know why the code doesn't contain any information about the charge carried by the particles.
-
+\subsection{Answer to Mask}
+Mask is a feature of awkward array.
+It provides the selection to the original array by assigning boolean values to associated array, and they would decide whether the new copy would take that element or not.
+For more information, please see \href{https://github.com/scikit-hep/awkward-0.x/blob/0.12.0/docs/classes.adoc#jaggedarray}{Awkward Array Release}.
 \section{More on the Needed Information}
 As we can see in \href{https://github.com/hqucms/ParticleNet/blob/master/tf-keras/convert_dataset.ipynb}{convert\_dataset.ipynb}, there are many properties for a particle that should be labeled out.
 
