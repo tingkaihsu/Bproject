@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {1}Where Are the Functions Used}{1}{section.1}%
+\contentsline {section}{\numberline {2}An Useful Tool To Understand Awkward Array}{1}{section.2}%
+\contentsline {section}{\numberline {3}What is Mask}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Answer to Mask}{2}{subsection.3.1}%
+\contentsline {section}{\numberline {4}More on the Needed Information}{2}{section.4}%
+\contentsline {section}{\numberline {5}Note After Discussion}{3}{section.5}%
