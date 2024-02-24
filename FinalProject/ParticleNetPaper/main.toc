@@ -1,9 +1,0 @@
-\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
-\contentsline {section}{\numberline {2}Imaged-Based Representation}{2}{section.2}%
-\contentsline {section}{\numberline {3}Particle-Based Representation}{2}{section.3}%
-\contentsline {section}{\numberline {4}Jet As Particle Clouds}{3}{section.4}%
-\contentsline {section}{\numberline {5}ParticleNet Implementation}{3}{section.5}%
-\contentsline {section}{\numberline {6}Performance-Top Tagging}{9}{section.6}%
-\contentsline {section}{\numberline {7}Performance-Quark Gluon Tagging}{10}{section.7}%
-\contentsline {section}{\numberline {8}Model Complexity}{11}{section.8}%
-\contentsline {section}{\numberline {9}Conclusion}{11}{section.9}%
